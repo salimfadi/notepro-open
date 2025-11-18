@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: custom styles for gutter */
+.split {
+  display: flex;
+  height: 100%;
+}
+
+.split > * {
+  overflow: auto;
+}

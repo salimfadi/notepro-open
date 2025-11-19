@@ -12,6 +12,11 @@ export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newSite, setNewSite] = useState({ name: "", url: "" });
 
+  // ✅ Nouveau : fonction de suppression
+  const handleDeleteSite = (indexToDelete) => {
+    setSites(sites.filter((_, index) => index !== indexToDelete));
+  };
+
   const handleAddSite = () => {
     setSites([...sites, newSite]);
     setNewSite({ name: "", url: "" });
@@ -23,7 +28,12 @@ export default function Dashboard() {
       <h1 className="text-2xl font-bold mb-6">Mes sites favoris</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {sites.map((site, index) => (
-          <FavoriteSiteCard key={index} name={site.name} url={site.url} />
+          <FavoriteSiteCard
+            key={index}
+            name={site.name}
+            url={site.url}
+            onDelete={() => handleDeleteSite(index)} // ✅ on passe la fonction
+          />
         ))}
       </div>
 
